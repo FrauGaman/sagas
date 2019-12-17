@@ -1,6 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-const Counter = ({ value, onIncrement, onDecrement, onIncrementAsync }) => {
+const Counter = ({value, onIncrement, onDecrement, onIncrementAsync }) => {
+
 	return (
 		<div>
 			<button onClick={onIncrementAsync}>Increment after 1 second</button>
@@ -8,10 +10,14 @@ const Counter = ({ value, onIncrement, onDecrement, onIncrementAsync }) => {
 			<button onClick={onDecrement}>Decrement</button>
 			<hr/>
 			<div>
-				Clicked: { value } times
+				Clicked: {value} times
 			</div>
 		</div>
 	)
 };
 
-export default Counter;
+const mapStateToProps = state =>({
+	value: state.counterReducer,
+});
+
+export default connect(mapStateToProps)(Counter);

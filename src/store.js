@@ -4,7 +4,7 @@ import createSagaMiddleware from 'redux-saga';
 
 import rootReducer from './reducres';
 
-import { helloSaga } from './sagas'
+import rootSaga from './sagas'
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -18,6 +18,8 @@ const configureStore = preloadedState => (
 
 const store = configureStore({});
 
-sagaMiddleware.run(helloSaga);
+sagaMiddleware.run(rootSaga);
+
+export const action = type => store.dispatch({type});
 
 export default store;
